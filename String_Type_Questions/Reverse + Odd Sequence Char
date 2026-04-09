@@ -1,0 +1,48 @@
+// Write a Java program to reverse each word of a sentence, but the output string should have only odd sequence characters.
+// eg: This is not the way to do programming
+// Output : iT i tn et yw t d gimrop
+
+class Main {
+    public static void main(String[] args) {
+        String input = "This is not the way to do programming";
+        System.out.println(solve(input));
+    }
+    
+    //reverse
+    static void revWord(char[] s, int i, int j)
+    {
+        while(i < j)
+        {
+            char temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    
+    //
+    public static String solve(String sentence)
+    {
+        char[] s = sentence.toCharArray();
+        int start=0;
+        for(int i=0;i<=s.length;i++)
+        {
+            if(i == s.length || s[i] == ' ' )
+            {
+                revWord(s, start, i-1);
+                start = i+1;
+            }
+        }
+        
+        StringBuilder sb = new StringBuilder();
+         for(int i=0;i<s.length;i++)
+         {
+             if(i % 2 == 0)
+             {
+                 sb.append(s[i]);
+             }
+         }
+         return sb.toString();
+    }
+}
