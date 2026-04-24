@@ -1,0 +1,22 @@
+// s= "it is a a very a sunny day is it"
+// output = {it=2, is=2, a=3, very=1, sunny=1}
+// just the logic
+//we use HashMap because order does not matter
+
+// 1. convert string to array of characters
+String[] words = s.split(" ");
+
+//2. creating map
+HahsMap<String, Integer> map = new HashMap<>();
+for(String word : words)
+{
+if(map.containsKey(word))
+{
+map.put(word, map.get(word) + 1);
+}
+else
+{
+map.put(word, 1);
+}
+}
+S.o.p(map);
