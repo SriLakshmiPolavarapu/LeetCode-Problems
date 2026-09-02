@@ -1,0 +1,41 @@
+class Solution {
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        
+        List<Integer> freq1 = new ArrayList<>();
+        for (String s : words) {
+            freq1.add(countSmallestChar(s));
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (String s2 : queries) {
+            int target = countSmallestChar(s2);
+            int count = 0;
+            for (int f : freq1) {
+                if (f > target) {
+                    count++;
+                }
+            }
+            result.add(count);
+        }
+
+        // convert List<Integer> to int[]
+        int[] answer = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            answer[i] = result.get(i);
+        }
+        return answer;
+    }
+
+    private int countSmallestChar(String str) {
+        char[] sorted = str.toCharArray();
+        Arrays.sort(sorted);
+        char smallest = sorted[0];
+        int count = 0;
+        for (char c : sorted) {
+            if (c == smallest) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
